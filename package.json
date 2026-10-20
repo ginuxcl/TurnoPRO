@@ -1,0 +1,16 @@
+{
+  "name": "turnos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema de gestión de turnos (estilo RosterLab/EnSaturno) — React + Express + PostgreSQL",
+  "scripts": {
+    "setup": "cd server && npm install && cd ../client && npm install",
+    "db": "docker compose up -d",
+    "db:migrate": "npm --prefix server run db:migrate",
+    "db:seed": "npm --prefix server run db:seed",
+    "dev": "node dev.mjs",
+    "build": "npm --prefix client run build",
+    "test:security": "node server/scripts/security-test.mjs",
+    "db:reset": "npm --prefix server run db:reset"
+  }
+}

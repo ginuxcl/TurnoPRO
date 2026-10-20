@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: turnos-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: turnos
+      POSTGRES_USER: turnos
+      POSTGRES_PASSWORD: turnos_dev_password
+    ports:
+      # 5433 en el host para no chocar con otro Postgres local (p. ej. el del sistema de colas)
+      - "5433:5432"
+    volumes:
+      - turnos_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U turnos -d turnos"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  turnos_pgdata:
